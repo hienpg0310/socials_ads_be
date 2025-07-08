@@ -1,0 +1,216 @@
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id                    String                  @id @default(uuid())
+    name                  String
+    email                 String                  @unique
+    salt                  String?
+    password              String
+    age                   Int?
+    isVerified            Boolean?                @default(false)
+    isActivated           Boolean?                @default(false)
+    createdAt             DateTime?               @default(now())
+    updatedAt             DateTime?               @default(now()) @updatedAt
+    UserPageSetting       UserPageSetting[]
+    TeamMember            TeamMember[]
+    Campaign              Campaign[]
+    SocialPlatformSetting SocialPlatformSetting[]
+}
+
+enum CampaignObjective {
+    traffic
+    conversions
+    engagement
+    brand_awareness
+}
+
+enum CampaignStatus {
+    active
+    paused
+    completed
+}
+
+model Campaign {
+    id          String  @id @default(uuid())
+    name        String  @db.VarChar(120)
+    description String? // nullable
+
+    objective   CampaignObjective @default(traffic)
+    startDate   DateTime          @default(now())
+    endDate     DateTime?
+    dailyBudget Float?
+    totalBudget Float?
+    status      CampaignStatus    @default(active)
+    createdAt   DateTime?         @default(now())
+    updatedAt   DateTime?         @default(now()) @updatedAt
+    Post        Post[]
+
+    createdUserId String?
+    createdUser   User?   @relation(fields: [createdUserId], references: [id], onDelete: SetNull)
+
+    teamId String
+    team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+}
+
+enum UserRole {
+    admin
+    page_admin
+    collaborator
+}
+
+enum PostStatus {
+    processing
+    draft
+    checked
+    scheduled
+    publishing
+    live
+}
+
+model Post {
+    id         String    @id @default(uuid())
+    campaignId String?
+    campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+
+    description String
+    content     String?
+    status      PostStatus @default(draft)
+    postedTime  DateTime
+    // platforms   Platform[] @default([])
+    platformIds String[]   @default([])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    imageIds     String[]      @default([])
+    publishedUrl String?
+    PostSetting  PostSetting[]
+}
+
+model PostSetting {
+    postId          String
+    socialSettingId String
+
+    model String?
+
+    post          Post                  @relation(fields: [postId], references: [id], onDelete: Cascade)
+    socialSetting SocialPlatformSetting @relation(fields: [socialSettingId], references: [id], onDelete: Cascade)
+
+    @@id([postId, socialSettingId])
+}
+
+model Image {
+    id          String   @id @default(uuid())
+    url         String
+    aspectRatio String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @default(now()) @updatedAt
+}
+
+enum UploadFileType {
+    video
+    image
+}
+
+enum UploadSource {
+    img_bb
+    google_drive
+}
+
+model UploadFile {
+    id   String         @id @default(uuid())
+    url  String
+    type UploadFileType
+
+    originalName String?
+
+    source UploadSource?
+
+    metadata Json?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+}
+
+enum Platform {
+    facebook
+    tiktok
+    instagram
+}
+
+enum SettingStatus {
+    connected
+    not_connected
+}
+
+model SocialPlatformSetting {
+    id          String        @id @default(uuid())
+    platform    Platform
+    pageId      String?
+    pageName    String?
+    pageLink    String?
+    accessToken String
+    status      SettingStatus @default(not_connected)
+    expiresAt   DateTime?
+    metadata    Json?
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @default(now()) @updatedAt
+
+    /// Relation (uncomment if you have a PlatformToken model)
+    // token       PlatformToken? @relation(fields: [tokenId], references: [id])
+    PostSetting     PostSetting[]
+    UserPageSetting UserPageSetting[]
+
+    teamId String
+    team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+    createdBy   String?
+    createdUser User?   @relation(fields: [createdBy], references: [id], onDelete: SetNull)
+}
+
+model UserPageSetting {
+    userId          String
+    socialSettingId String
+    role            UserRole @default(collaborator)
+
+    user          User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+    socialSetting SocialPlatformSetting @relation(fields: [socialSettingId], references: [id], onDelete: Cascade)
+
+    @@id([userId, socialSettingId])
+}
+
+enum TeamRole {
+    OWNER
+    ADMIN
+    COLLABORATOR
+}
+
+model Team {
+    id          String   @id @default(uuid())
+    name        String
+    description String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    members               TeamMember[]
+    Campaign              Campaign[]
+    SocialPlatformSetting SocialPlatformSetting[]
+}
+
+model TeamMember {
+    userId String
+    teamId String
+    role   TeamRole @default(COLLABORATOR)
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    team Team @relation(fields: [teamId], references: [id], onDelete: NoAction)
+
+    @@id([userId, teamId])
+}

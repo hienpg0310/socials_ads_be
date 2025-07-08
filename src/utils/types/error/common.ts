@@ -1,0 +1,2 @@
+export const MissingPathParamsRequestError = (params: string[]) => new Error(`Missing ${params.join(', ')} in path request!`);
+export const MissingQueryParamsRequestError = (params: string[]) => new Error(`Missing query ${params.join(', ')} in request!`);

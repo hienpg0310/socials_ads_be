@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "techfis-marketing",
+  "private_key_id": "0b08384180f0c7cfe9dc6f8854a8dec9d0b8a4f5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDhXABhTowtzf8X\nbMHiUz4533O9R8lAEFZqQr9lNKl3WwI1YpMvIO9WkB6IRkd5vv+4+aBkjX6uvcdc\nWTIM9gb4RhQmQkXcctPRnjFx3A6slFUMWCJVuJx8WtwbPDgoW3FFhKIwdqGNj3+q\nr9y2+zbKeDUG8fCqRvffEkQbY2APLsgUTL/tb5dp0AQcFVxVWQIGl+IkwQhhdaN9\naKPfzAyNKDFscpAb16ZfD6Kpq7bLObGXTxjpGFqkIwO2btJrE1528DAa9jUpT8x8\nymiKIuCTP1L8cMapeYzgClDYa12FXRcc243siloN1pcLqPalLwv5PI2nyIp3RDJz\ndaiCTEX3AgMBAAECggEAGE4VW76edLmLrQmVluTBHc8WivqpNF0ZYiglFJ5g4UFc\nqXL3tR9ZYMh2BTQwikC0u3eaD64zqaydyefJc5y8igijggV8xmFQrKy3NXSf1TIW\n7W1l9UEjXhq93rwYbGssT2yWF3b78SoMVqrVOZuPaw0a3vm3VI4HNrT1c89nG/aN\nB/Aam8PwCyO7aNKiD/YHOXfkR89Uh12MGHY3jhQ/HSYvzn8qqafJ1KnDxRuavn+b\nxe7YTpnki7KQuybGL6R/p8Ckpw+PzVipfixOzAkI3IyyNOgSwLjA0JdY+1xEY2BC\n8FZsyk6+2Oii0IncBjK72pubkDREf8T3J9Mmoq7GyQKBgQDyk1AD63oyeezy3z4v\nK+UDUMnGD4teCA5n8A61vuFhmsRrgfeVISDZL9jc4HQ4kUzQ3iH6w7mjOY2zn2XG\n0Eb/YIUqRlD0P2B7RM7ITZgRFR15g9kj54EPhT2JCqRIFOvODDxC4ciPhfcy0CpE\n1m2Eif70Z/7mQWkYzgiDqlir3wKBgQDt1MfJd7dPa5swgrLp3sLCCCgAaRUIO7Bm\n4zVih+fgwnMMBETjUqkzrdyBgZlJ+6okGcqcu31HnjDf95Et5pp8yjcSCPY1F3su\ng9mqeVXeVt55L5bhqLCVBGZ6YPYouf9RXIkcTi7SbtP2ZI36AfEZtzPclitezUgX\nUVPSiuMo6QKBgQCrJKAJg/O89STl3fejlFaJVlBlesYbW5e+YTIfrEKbeHQoXZPu\nFWd1lDpu67VTy7/khTR4Fes9a/e7yTQnZv8QYmrRfrbS/Hv3vH4f+A7XzovzFcD3\ngfgemSTnMSji6k/MGfnSPjYgfKYBpbiMxLSUFEBa85x1m6SoqYR8UI0rBQKBgF0F\naXMKSP9eRh+uLw48G47Ko+KtNxW2SuOjIIE+SNpnE5pynQMQlK9q5CEfMHZ4YW6n\nS9ELoA9/9vvSl80NMgV3Dh0Wtj3DxmFGHr+Hn6dL8M4TZ/8w/If8ZZyeCgmZ3hvT\nhqk0hym1QWBQqhtL4SI+vqEbdzEoN3cvTwq9WeXpAoGBAJEMn18Rt2SZ2fgUaseo\nyKH0glxdOy8aMDehVSwzV6hCy9caiJ+FKjhmkFDPXWBvRhVzSyBgO0nnqPhszRJX\nXKCJbhc86pg7M5iWJDN/8oZyYpzJjnyPN55ql8O/M7mOt3pz9VQ4zMolZGBAsNyK\nmQ6v3iFrpCol8JsB1Je83ysY\n-----END PRIVATE KEY-----\n",
+  "client_email": "techfis-ad-dev@techfis-marketing.iam.gserviceaccount.com",
+  "client_id": "111500136148994605156",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/techfis-ad-dev%40techfis-marketing.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
