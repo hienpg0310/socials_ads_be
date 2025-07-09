@@ -46,6 +46,29 @@ export const setUpTeamRouter = () => {
         return successResponse(res, teamMembers, teamMembers.length);
     })
 
+    router.get("/:teamId", async (req, res) => {
+      const teamId = req.params.teamId as string;
+      if (!teamId) {
+        throw MissingPathParamsRequestError(["teamId"]);
+      }
+
+      const userId = getUserInRequest(req, res).id;
+
+      // check permission: user must belong to the team
+      const isAllow = await allowWithTeam(teamId, userId);
+      if (!isAllow) {
+        throw new ForbiddenError("You have no authorization to view this team");
+      }
+
+      const team = await TeamController.getTeamDetail(teamId);
+      if (!team) {
+        return res.status(404).json({ error: "Team not found" });
+      }
+
+      return successResponse(res, team);
+    })
+    
+
     router.post('/', async (req, res) => {
         const userId = getUserInRequest(req, res).id;
         const newTeamData = ZCreateTeamDTO.parse(req.body);

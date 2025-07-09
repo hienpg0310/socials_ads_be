@@ -8,6 +8,7 @@ import { setUpCampaignRouter } from "./campaign";
 import { setUpPostRouter } from "./post";
 import { setUpSocialSettingRouter } from "./social-setting";
 import { setUpUploadRouter } from "./upload";
+import  tiktokRoutes  from "./tiktok/tiktok";
 
 export const setUpAppRoutes = () => {
     const rootRouter = Router();
@@ -20,7 +21,7 @@ export const setUpAppRoutes = () => {
     rootRouter.use('/upload', setUpUploadRouter());
     rootRouter.use('/social-setting', authMiddleware, setUpSocialSettingRouter());
     rootRouter.use('/team', authMiddleware, setUpTeamRouter());
-
+    rootRouter.use("/tiktok", tiktokRoutes);
 
     // add error handler for handle all route error
     rootRouter.use(ErrorMiddleware)

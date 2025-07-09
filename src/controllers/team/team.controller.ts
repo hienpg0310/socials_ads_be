@@ -15,6 +15,12 @@ const createNewTeam = async (data: CreateTeamDTO) => {
     const newTeam = await TeamService.createNewTeam(data);
     return newTeam;
 }
+
+async function getTeamDetail(teamId: string) {
+  const team = await TeamService.getTeamDetailById(teamId);
+  return team;
+}
+
 const updateTeam = async (teamId: string, data: UpdateTeamDTO) => {
     const updatedTeam = await TeamService.updateTeam(teamId, data);
     return true;
@@ -56,17 +62,19 @@ const isBelongToTeam = async (teamId: string, userId: string) => {
     }
     return false;
 }
+
 const TeamController = {
-    getAllTeamByUser,
-    getTeamMembersByTeam,
-    createNewTeam,
-    createNewTeamMember,
-    updateTeam,
-    deleteTeam,
-    addNewMember,
-    updateMemberInTeam,
-    removeMemberInTeam,
-    isBelongToTeam,
-}
+  getAllTeamByUser,
+  getTeamMembersByTeam,
+  getTeamDetail,
+  createNewTeam,
+  createNewTeamMember,
+  updateTeam,
+  deleteTeam,
+  addNewMember,
+  updateMemberInTeam,
+  removeMemberInTeam,
+  isBelongToTeam,
+};
 
 export default TeamController;

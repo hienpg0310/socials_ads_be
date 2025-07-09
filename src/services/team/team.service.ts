@@ -31,6 +31,16 @@ const getTeamMemberByTeamId = async (teamId: string) => {
     });
 }
 
+const getTeamDetailById = async (teamId: string) => {
+  const team = await prisma.team.findUnique({
+    where: { id: teamId },
+    include: {
+      members: true, // Optional: include team members
+    },
+  });
+  return team;
+};
+
 const createNewTeam = async (data: CreateTeamDTO) => {
     const newTeam = await prisma.team.create({
         data: { ...data }
@@ -91,6 +101,7 @@ const TeamService = {
     findTeamsByUserId,
     getTeamMemberDetail,
     getTeamMemberByTeamId,
+    getTeamDetailById,
     createNewTeam,
     updateTeam,
     deleteTeam,

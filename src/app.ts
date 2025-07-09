@@ -19,9 +19,22 @@ const startApp = (port: number) => {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, "public")));
 
+  // app.get(
+  //   "/tiktok/callback/tiktokpxghvPPozppelToueiC0iGdVcD43vwA6.txt",
+  //   (req, res) => {
+  //     res.sendFile(
+  //       path.join(
+  //         __dirname,
+  //         "tiktok/tiktokpxghvPPozppelToueiC0iGdVcD43vwA6.txt"
+  //       )
+  //     );
+  //   }
+  // );
+
   app.get("/", (req, res) => {
     res.send("<h1>Ad Management</h1>");
   });
+
   app.use("/", setUpAppRoutes());
 
   app.listen(port, function () {
