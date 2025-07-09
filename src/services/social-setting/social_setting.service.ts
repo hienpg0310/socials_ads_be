@@ -5,7 +5,10 @@ const findManySocialSettings = async (options: QuerySocialPlatformSettingOptions
     const socialSettings = await prisma.socialPlatformSetting.findMany({
         where: {
             ...options,
-        }
+        },
+        include: {
+            team: true, 
+        },
     });
 
     return socialSettings;

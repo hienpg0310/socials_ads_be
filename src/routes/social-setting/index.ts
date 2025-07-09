@@ -84,7 +84,7 @@ export const setUpSocialSettingRouter = () => {
             throw MissingPathParamsRequestError(['id']);
         }
         const userId = getUserInRequest(req, res).id;
-        const isAllow = await isAllowWithSocialSetting(id, userId, ['ADMIN', 'COLLABORATOR']);
+        const isAllow = await isAllowWithSocialSetting(id, userId, ['ADMIN', 'OWNER', 'COLLABORATOR']);
         if (!isAllow) {
             throw new ForbiddenError("You do not have permission on this social setting");
         }
